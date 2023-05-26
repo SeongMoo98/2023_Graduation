@@ -65,18 +65,20 @@ if __name__ == "__main__":
     df['latitude'] = df['latitude'].apply(float)
 
     df.set_index('oid', inplace=True)
+    
+    # 결측치 제거
+    # df.info()로 확인해보면 결측치는 없지만
+    # 다른 엑셀파일에는 있을수도 있어서 결측치 제거해줬습니다.
+    df = df.dropna()
 
+    df = remove_invalid_data(df)
+    
     # collection_dt를 "yyyy-mm-dd HH:MM:SS" 형식으로 변경
     # 나중에 날짜별로 그룹핑 해야할 수도 있어서 일단 형식만 맞춰 놓을게요 
     df['collection_dt'] = pd.to_datetime(df['collection_dt'].astype(str), format='%Y%m%d%H%M%S%f')
     df['collection_dt'] = df['collection_dt'].dt.strftime('%Y-%m-%d %H:%M:%S')
 
-     # 결측치 제거
-     # df.info()로 확인해보면 결측치는 없지만
-     # 다른 엑셀파일에는 있을수도 있어서 결측치 제거해줬습니다.
-    df = df.dropna()
-
-    df = remove_invalid_data(df)
+     
 
     # data_dict 구조 : {'oid' : rows(DataFrame), ...}
     data_dict = {}
