@@ -3,7 +3,7 @@ import numpy as np
 
 if __name__ == "__main__":
     # csv 파일 불러오기
-    df_trajectory = pd.read_csv('2020_07_trajectory_100000.csv')
+    df_trajectory = pd.read_csv('2020_07_trajectory_500000.csv')
     pois_50 = pd.read_csv("K_Means_Clustering/2021_07_50_transformed.csv")
 
     # transition_matrix : transition 횟수 count 저장, transition_probability : transition 확률 저장
